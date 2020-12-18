@@ -146,6 +146,8 @@ Methods
 
       * target - _string_ - For symlink entries, this is the symlink's target **(*NIX only)**.
 
+      * sticky - _boolean_ - True if the sticky bit is set for this entry **(*NIX only)**.
+
 * **get**(< _string_ >path, [< _boolean_ >useCompression, ]< _function_ >callback) - _(void)_ - Retrieves a file at `path` from the server. `useCompression` defaults to false. `callback` has 2 parameters: < _Error_ >err, < _ReadableStream_ >fileStream.
 
 * **put**(< _mixed_ >input, < _string_ >destPath, [< _boolean_ >useCompression, ]< _function_ >callback) - _(void)_ - Sends data to the server to be stored as `destPath`. `input` can be a ReadableStream, a Buffer, or a path to a local file. `useCompression` defaults to false. `callback` has 1 parameter: < _Error_ >err.
@@ -153,6 +155,8 @@ Methods
 * **append**(< _mixed_ >input, < _string_ >destPath, [< _boolean_ >useCompression, ]< _function_ >callback) - _(void)_ - Same as **put()**, except if `destPath` already exists, it will be appended to instead of overwritten.
 
 * **rename**(< _string_ >oldPath, < _string_ >newPath, < _function_ >callback) - _(void)_ - Renames `oldPath` to `newPath` on the server. `callback` has 1 parameter: < _Error_ >err.
+
+* **logout**(< _function_ >callback) - _(void)_ - Logout the user from the server. `callback` has 1 parameter: < _Error_ >err.
 
 * **delete**(< _string_ >path, < _function_ >callback) - _(void)_ - Deletes a file, `path`, on the server. `callback` has 1 parameter: < _Error_ >err.
 
@@ -172,7 +176,7 @@ Methods
 
 * **mkdir**(< _string_ >path, [< _boolean_ >recursive, ]< _function_ >callback) - _(void)_ - Creates a new directory, `path`, on the server. `recursive` is for enabling a 'mkdir -p' algorithm and defaults to false. `callback` has 1 parameter: < _Error_ >err.
 
-* **rmdir**(< _string_ >path, < _function_ >callback) - _(void)_ - Removes a directory, `path`, on the server. `callback` has 1 parameter: < _Error_ >err.
+* **rmdir**(< _string_ >path, [< _boolean_ >recursive, ]< _function_ >callback) - _(void)_ - Removes a directory, `path`, on the server. If `recursive`, this call will delete the contents of the directory if it is not empty. `callback` has 1 parameter: < _Error_ >err.
 
 * **cdup**(< _function_ >callback) - _(void)_ - Changes the working directory to the parent of the current directory. `callback` has 1 parameter: < _Error_ >err.
 
